@@ -6,7 +6,7 @@
 </head>
 <body>
     <!-- Navbar -->
-    @include('components.navbar')
+    @include('components.admin-navbar')
 
     <!-- Main Content -->
     @yield('content')
