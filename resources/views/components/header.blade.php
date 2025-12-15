@@ -1,6 +1,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Journal - A Curated Blog</title>
+    <title>{{ $regInfo->name . ' - ' . $regInfo->title ?? 'hmm - A Curated Blog' }}</title>
     <meta name="description" content="A curated collection of stories, insights, and ideas. Discover articles on technology, lifestyle, travel, food, and creativity.">
     
     <!-- Bootstrap CSS -->

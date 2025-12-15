@@ -5,22 +5,22 @@
 
     <!-- Hero Section -->
     <section class="hero-section py-5">
-        @include('content.hero')
+        @include('pages.home.hero')
     </section>
 
     <!-- Categories Section -->
     <section class="py-5">
-        @include('content.blog-post-categories')
+        @include('pages.blog.blog-post-categories')
     </section>
 
     <!-- Recent Posts Section -->
     <section class="py-5 bg-light">
-        @include('content.blog-recent-post')
+        @include('pages.blog.blog-recent-post')
     </section>
 
     <!-- Newsletter Section -->
     <section class="py-5">
-        @include('content.newsletter')
+        @include('pages.contact_us.newsletter')
     </section>
 
     <!-- Bootstrap JS -->

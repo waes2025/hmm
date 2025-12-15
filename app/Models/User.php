@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -18,7 +19,8 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'username',
         'email',
         'password',
     ];
@@ -33,6 +35,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function users()
+    {
+        return $this->hasMany(Blog::class, 'created_by');
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -44,5 +51,35 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Creates a new user based on the input provided.
+     *
+     * @return object
+     */
+    public static function create_user($details)
+    {
+        $user = User::create([
+            'surname' => $details['surname'],
+            'first_name' => $details['first_name'],
+            'last_name' => $details['last_name'],
+            'username' => $details['username'],
+            'email' => $details['email'],
+            'password' => Hash::make($details['password']),
+            'language' => ! empty($details['language']) ? $details['language'] : 'en',
+        ]);
+
+        return $user;
+    }
+
+    /**
+     * Get the user's full name.
+     *
+     * @return string
+     */
+    public function getUserFullNameAttribute()
+    {
+        return "{$this->surname} {$this->first_name} {$this->last_name}";
     }
 }
